@@ -13,6 +13,8 @@
   },
   "extra": {
     "handle": "userlog",
-    "name": "User Log"
+    "name": "User Log",
+    "developer": "Wish & Dell",
+    "developerUrl": "https://www.wishanddell.co.uk"
   }
 }
