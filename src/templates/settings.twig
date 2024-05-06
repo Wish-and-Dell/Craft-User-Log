@@ -1,0 +1,35 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.selectField({
+first: true,
+  label: 'IP Address Lookup Service',
+  instructions: 'Select which service to use to lookup a users IP address for their location.',
+  id: 'ipservice',
+  name: 'ipService',
+  options: [
+    {label: 'Disabled', value: 'disabled'},
+    {label: 'Ipstack', value: 'ipstack'}
+  ],
+  value: settings.ipService
+}) }}
+
+{{ forms.textField({
+    label: "Ipstack API Key",
+    instructions: "ipstack.com - Free for up to 100 requests per month",
+    name: 'ipstackKey',
+    value: settings.ipstackKey
+}) }}
+
+{{ forms.selectField({
+    label: "Log History"|t('app'),
+    instructions: "Set the number of days to keep log data for. You must have cron job running daily.",
+    id: 'days',
+    name: 'days',
+    options: [
+        {'label': '7', 'value':'7'},
+        {'label': '14', 'value':'14'},
+        {'label': '21', 'value':'21'},
+        {'label': '28', 'value':'28'}
+    ],
+    value: settings.days
+}) }}

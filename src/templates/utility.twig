@@ -1,0 +1,54 @@
+{% paginate logs as pageInfo, pageEntries %}
+
+<div class="readable">
+	<form method="post">
+		{{ csrfInput() }}
+	    <input type="hidden" name="action" value="userlog/log/remove">
+
+		<div class="buttons"><button class="btn submit">Remove Selected</button></div>
+		<table class="data fullwidth fixed-layout">
+	        <thead>
+	            <tr>
+	                {#<th>ID</th>#}
+	                {#<th>User ID</th>#}
+	                <th style="width:50px"></th>
+	                <th>Username</th>
+	                <th>IP Address</th>
+	                <th>Location</th>
+	                <th>Date</th>
+	            </tr>
+	        </thead>
+			<tbody>
+			    {% for log in pageEntries %}
+				<tr>
+				    {#<td>{{ log.id }}</td>#}
+				    {#<td><a href="{{ url('users/'~log.userId) }}">{{ log.userId }}</a></th>#}
+				    <th><input type="checkbox" name="log[]" value="{{ log.id }}" /></th>
+				    <th><a href="{{ url('users/'~log.userId) }}#activity">{{ log.email }}</a></th>
+				    <td>{{ log.ipAddress }}</td>
+				    <td>{{ log.location }}</td>
+				    <td>{{ log.dateCreated|date('H:i, D d M Y') }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</form>
+	
+	<div style="margin-top: 30px; text-align: center;">
+		{#<a href="{{ pageInfo.firstUrl }}">First Page</a>#}
+		{% if pageInfo.prevUrl %}<a href="{{ pageInfo.prevUrl }}">Previous Page</a>{% endif %}
+		
+		{% for page, url in pageInfo.getPrevUrls(5) %}
+		    <a href="{{ url }}">{{ page }}</a>
+		{% endfor %}
+		
+		<span class="current">{{ pageInfo.currentPage }}</span>
+		
+		{% for page, url in pageInfo.getNextUrls(5) %}
+		    <a href="{{ url }}">{{ page }}</a>
+		{% endfor %}
+		
+		{% if pageInfo.nextUrl %}<a href="{{ pageInfo.nextUrl }}">Next Page</a>{% endif %}
+		{#<a href="{{ pageInfo.lastUrl }}">Last Page</a>#}
+	</div>
+</div>

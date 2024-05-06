@@ -1,0 +1,24 @@
+<div id="activity" class="flex-fields hidden">
+    <table class="data fullwidth fixed-layout">
+        <thead>
+            <tr>
+                {#<th>ID</th>#}
+                {#<th>User ID</th>#}
+                <th>IP Address</th>
+                <th>Location</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+		<tbody>
+		    {% for log in logs %}
+			<tr>
+			    {#<td>{{ log.id }}</td>#}
+			    {#<td><a href="{{ url('users/'~log.userId) }}">{{ log.userId }}</a></th>#}
+			    <td>{{ log.ipAddress }}</td>
+			    <td>{{ log.location }}</td>
+			    <td>{{ log.dateCreated|date('H:i, D d M Y') }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
