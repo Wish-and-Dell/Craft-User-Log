@@ -1,4 +1,4 @@
-# Craft User Log
+# Craft CMS User Log
 
 This plugin will log user logins with their IP address and location.
 
